@@ -14,6 +14,7 @@ QSqlTableModel *model;
     model->setTable("Images");
     model->select();
   ui->tableView->setModel(model);
+//  dfjklbhsdfo;gndfo;ghdfioghio
 
 }
 
