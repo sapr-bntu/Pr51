@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "qscrollbar.h"
 #include "qdir.h"
+#include <QtSql>
 
 namespace Ui {
     class MainWindow;
@@ -27,6 +28,8 @@ private:
     QStringList fnlist;
     QStringList namefilter;
     QDir *pdr;
+    QLineEdit *lineEdit;
+    QSqlDatabase db;
     int ci;
 
 private slots:
@@ -41,6 +44,7 @@ private slots:
     void normalSize();
     void next();
     void prev();
+    void updateData();
 
 };
 
