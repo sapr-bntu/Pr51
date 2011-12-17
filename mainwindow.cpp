@@ -15,22 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("project_DB.s3db");
     db.open();
-   /* QSqlTableModel *model;
-    model = new QSqlTableModel(this);
-    model->setTable("Images");
-    model->select();*/
-    /*qDebug()<<"errordb open: "<<db.lastError().text();
-    QSqlQuery query;
-    query.exec("INSERT INTO Images (ID, Name,Path, Mark, Tag) VALUES (1,'1.jpg','kjdf','5','горы ')");
-    qDebug()<<"errordb: "<<db.lastError().text();
-    query.exec("SELECT Tag FROM Images WHERE ID=1");
-    qDebug()<<"errordb: "<<db.lastError().text();
-    query.first();
-    QString tag = query.value(0).toString();
-    qDebug()<<"errordb: "<<db.lastError().text();
-    ui->lineEdit->setText(tag);
-    //ui->tableView->setModel(model);*/
-    ////////////////
+
 
     ui->label->setBackgroundRole(QPalette::Base);
     ui->label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
@@ -85,17 +70,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::next()
 {
-
-updateData();
-    ci++;
-    if (ci>=fnlist.count())
-    {
-        ci=0;
-    }
-    openImg(fnlist[ci]);
-}
-void MainWindow::updateData()
-{
     QSqlQuery query;
 
     query.prepare("SELECT ID FROM Images WHERE Name = :name");
@@ -121,12 +95,43 @@ void MainWindow::updateData()
     query.bindValue(":tag", ui->lineEdit->text());
     query.exec();
     }
+
+    ci++;
+    if (ci>=fnlist.count())
+    {
+        ci=0;
+    }
+    openImg(fnlist[ci]);
 }
 
 void MainWindow::prev()
 {
+    QSqlQuery query;
 
-updateData();
+    query.prepare("SELECT ID FROM Images WHERE Name = :name");
+    query.bindValue(":name", fnlist[ci]);
+    query.exec();
+    query.first();
+
+    if (query.first())
+    {
+    int ID = query.value(0).toInt();
+    query.prepare("UPDATE Images SET Mark=:mark,Tag=:tag WHERE ID = :ID");
+    query.bindValue(":ID", ID);
+    query.bindValue(":mark", ui->spinBox->value());
+    query.bindValue(":tag", ui->lineEdit->text());
+    query.exec();
+    }
+
+    else
+    {
+    query.prepare("INSERT INTO Images (Name,Mark, Tag) VALUES (:name,:mark,:tag)");
+    query.bindValue(":name", fnlist[ci]);
+    query.bindValue(":mark", ui->spinBox->value());
+    query.bindValue(":tag", ui->lineEdit->text());
+    query.exec();
+    }
+
     ci--;
     if (ci<0)
     {
@@ -145,7 +150,8 @@ void MainWindow::openImg(QString fileName)
     }
     ui->label->setPixmap(QPixmap::fromImage(image));
     scaleFactor = 1.0;
-
+    sh=image.height();
+    sw=image.width();
 
     ui->actionFitToWindow->setEnabled(true);
     updateActions();
@@ -234,11 +240,29 @@ void MainWindow::fitToWindow()
  {
      bool fitToWindow = ui->actionFitToWindow->isChecked();
      ui->scrollArea->setWidgetResizable(fitToWindow);
+     ui->scrollArea->setWidgetResizable(false);
      if (!fitToWindow) {
          normalSize();
      }
+     else
+     {
+         double ssh=sh*scaleFactor;
+         double ssw=sh*scaleFactor;
+         double sch=ui->scrollArea->height();
+         double scw=ui->scrollArea->width();
+         double mh=sch/ssh;
+         double mw=scw/ssw;
+         if (mh<mw)
+         {
+             scaleImage(mh);
+         }
+         else
+         {
+             scaleImage(mw);
+         }
+     }
      updateActions();
- }
+}
 
 void MainWindow::normalSize()
  {
@@ -251,7 +275,7 @@ void MainWindow::zoomIn()
  if( ui->actionFitToWindow->isChecked() == true)
     {
        ui->actionFitToWindow->setChecked(false);
-       fitToWindow();
+       //fitToWindow();
     }
     scaleImage(1.05);
 
@@ -262,7 +286,7 @@ void MainWindow::zoomIn()
  if( ui->actionFitToWindow->isChecked() == true)
     {
        ui->actionFitToWindow->setChecked(false);
-       fitToWindow();
+       //fitToWindow();
     }
      scaleImage(0.95);
  }

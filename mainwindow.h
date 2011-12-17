@@ -31,6 +31,8 @@ private:
     QLineEdit *lineEdit;
     QSqlDatabase db;
     int ci;
+    int sh;
+    int sw;
 
 private slots:
 
@@ -44,7 +46,7 @@ private slots:
     void normalSize();
     void next();
     void prev();
-    void updateData();
+    //void updateData();
 
 };
 
