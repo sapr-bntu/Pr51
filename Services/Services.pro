@@ -4,7 +4,6 @@
 #
 #-------------------------------------------------
 
-QT       -= gui
 
 TARGET = Services
 TEMPLATE = lib

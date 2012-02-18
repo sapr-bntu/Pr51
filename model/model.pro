@@ -10,9 +10,11 @@ TARGET = model
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES += fileinfo.cpp
+SOURCES += fileinfo.cpp \
+    application.cpp
 
-HEADERS += fileinfo.h
+HEADERS += fileinfo.h \
+    application.h
 unix:!symbian {
     maemo5 {
         target.path = /opt/usr/lib
