@@ -4,3 +4,8 @@
 IFieInfoRepositoryFactory::IFieInfoRepositoryFactory()
 {
 }
+
+IFileInfoRepository IFieInfoRepositoryFactory::GetRepository()
+{
+throw;
+}

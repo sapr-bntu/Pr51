@@ -1,11 +1,23 @@
 #include "sqlfileinforepository.h"
 
 
+
+
 SQLFileInfoRepository::SQLFileInfoRepository()
 {
 }
 
-virtual SQLFileInfoRepository::GetFileInfo(QString path)
+fileInfo SQLFileInfoRepository::GetFileInfo(QString path)
 {
-    throw "notImpl";
+    throw "notImplemented";
+}
+
+bool SQLFileInfoRepository::HasFileInfo(QString path)
+{
+    throw "notImplemented";
+}
+
+void SQLFileInfoRepository::SaveFileInfo(fileInfo fileInfo)
+{
+    throw "notImplemented";
 }
