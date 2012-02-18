@@ -1,12 +1,12 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2011-09-30T15:38:38
+# Project created by QtCreator 2012-02-18T16:19:23
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui
 
-TARGET = project51
+TARGET = winUI
 TEMPLATE = app
 
 
