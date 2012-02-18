@@ -5,4 +5,5 @@ SUBDIRS += \
     model \
     interfaces \
     Repositories \
-    factories
+    factories \
+    Services
