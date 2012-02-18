@@ -4,6 +4,8 @@
 #include <fileinfo.h>
 #include <../Services/folderservice.h>
 #include <../Services/fileservice.h>
+#include <QFileInfo>
+#include <QDir>
 
 class Application
 {
@@ -14,7 +16,7 @@ public:
   private:
     QString currentFile;
     QString currentFolder;
-    FolderService folderService;
+    FolderService *folderService;
     FileService fileService;
 
 public:
@@ -22,6 +24,8 @@ public:
     QString MovePrevious();
     fileInfo GetFileInfo();
     void SetCurrentFolder(QString path);
+    void OpenFile(QString filePath);
+
 };
 
 #endif // APPLICATION_H

@@ -1,18 +1,13 @@
 #include "application.h"
-#include <QString>
-#include <../Services/folderservice.h>
-
 
 Application::Application()
 {
     fileService=new FileService();
-    folderService = new FolderService();
-    currentFile = folderService.GetFirstFile();
 }
 
 QString Application::GetFileInfo()
 {
-
+return fileService.GetFileInfo(currentFile);
 }
 void Application::SetCurrentFolder(QString path)
 {
@@ -25,4 +20,14 @@ QString Application::MoveNext()
 QString Application::MovePrevious()
 {
     return folderService.GetPreviousFile();
+}
+
+void Application::OpenFile(QString filePath)
+{
+    QFileInfo *fi=new QFileInfo(fileName);
+    QDir pdr=new QDir(fi->absoluteDir());
+    currentFolder = pdr.dirName();
+
+    folderService = new FolderService(filepath);
+
 }
