@@ -14,9 +14,10 @@ private:
     int currentIndex;
 public:
     FolderService(QString path);
-    QString GetNextFile(QString fileName);
-    QString GetPreviousFile(QString fileName);
-    QString GetFirstFile();
+    QString GetNextFile();
+    QString GetPreviousFile();
+    QString CurrentFile();
+    int CurrentFileIndex();
 };
 
 #endif // FOLDERSERVICE_H

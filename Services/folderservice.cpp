@@ -19,16 +19,41 @@ FolderService::FolderService(QString path)
        }
     currentIndex=fileNameList.indexOf(path);
 }
-QString FolderService::GetNextFile(QString fileName)
+QString FolderService::GetNextFile()
 {    
-    throw "notimpl";    
+    if (currentIndex<fileNameList.count())
+    {
+        currentIndex++;
+        return fileNameList[currentIndex];
+    }
+    else
+    {
+        currentIndex=0;
+        return fileNameList[currentIndex];
+    }
+
 }
-QString FolderService::GetPreviousFile(QString fileName)
+QString FolderService::GetPreviousFile()
 {
-    throw "notimpl";
+    if (currentIndex>0)
+    {
+        currentIndex--;
+        return fileNameList[currentIndex];
+    }
+    else
+    {
+        currentIndex=fileNameList.count()-1;
+        return fileNameList[currentIndex];
+    }
 }
-QString FolderService::GetFirstFile()
+
+QString FolderService::CurrentFile()
 {
-    throw "motimpl";
+    return fileNameList[currentIndex];
+}
+
+int FolderService::CurrentFileIndex()
+{
+    return currentIndex;
 }
 

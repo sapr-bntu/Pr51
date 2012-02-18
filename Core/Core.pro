@@ -1,18 +1,16 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2012-02-18T16:22:13
+# Project created by QtCreator 2012-02-18T19:34:54
 #
 #-------------------------------------------------
 
-#QT       -= gui
-
-TARGET = model
+TARGET = Core
 TEMPLATE = lib
 CONFIG += staticlib
 
-SOURCES += fileinfo.cpp
+SOURCES += application.cpp
 
-HEADERS += fileinfo.h
+HEADERS += application.h
 unix:!symbian {
     maemo5 {
         target.path = /opt/usr/lib

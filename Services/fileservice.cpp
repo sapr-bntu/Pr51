@@ -9,7 +9,7 @@ fileInfo FileService::GetFileInfo(QString path)
 {
     throw "not impl";
 }
-void FileService::SaveFile(fileInfo file)
+void FileService::SaveFileInfo(fileInfo file)
 {
     throw "not impl";
 }

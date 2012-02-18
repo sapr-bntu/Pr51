@@ -8,7 +8,7 @@ public:
     FileService();   
     fileInfo GetFileInfo(QString path);
     QImage GetImage(QString path);
-    void SaveFile(fileInfo file);
+    void SaveFileInfo(fileInfo file);
 };
 
 #endif // FILESERVICE_H

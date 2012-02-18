@@ -6,4 +6,5 @@ SUBDIRS += \
     interfaces \
     Repositories \
     factories \
-    Services
+    Services \
+    Core
