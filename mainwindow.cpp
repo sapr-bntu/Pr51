@@ -4,6 +4,8 @@
 #include "qmessagebox.h"
 #include "qdebug.h"
 
+
+//comment for first commit (Frigik)
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
