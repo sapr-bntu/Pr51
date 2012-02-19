@@ -41,21 +41,30 @@ void FrigikFileInfoTest::GetWrongMarkTest()
 {
     fileInfo *file = new fileInfo("test");
     file->SetMark(4);
-    QCOMPARE(file->GetMark(),3);
+    bool success;
+            if (file->GetMark()>4||file->GetMark()<4)
+    {
+        success=false;
+    }
+    else
+            {
+                success=true;
+            }
+
+    QCOMPARE(success,true);
 }
 void FrigikFileInfoTest::GetException()
 {
     fileInfo *file = new fileInfo("test");
     bool isException;
     try{
-        qDebug()<<"false";
+
     file->SetMark(6);
     isException=false;
     }
     catch(char* a)
     {
-        isException=true;
-         qDebug()<<"true";
+        isException=true;        
     }
     QCOMPARE(isException,true);
 }
