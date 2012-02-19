@@ -17,16 +17,18 @@ FolderService::FolderService(QString path)
 
     for (int i=0;i<fileNameList.count();i++)
        {
-
-          fileNameList[i]=pdr->absoluteFilePath(fileNameList[i]);
-
-       }
+          fileNameList[i]=pdr->absoluteFilePath(fileNameList[i]);         
+       }   
     currentIndex=fileNameList.indexOf(path);
 }
 QString FolderService::GetNextFile()
 {    
-    if (currentIndex<fileNameList.count())
+    if (fileNameList.count()==0)
     {
+        throw "There is no files";
+    }
+    if (currentIndex<fileNameList.count())
+    {       
         currentIndex++;
         return fileNameList[currentIndex];
     }
@@ -39,6 +41,10 @@ QString FolderService::GetNextFile()
 }
 QString FolderService::GetPreviousFile()
 {
+    if (fileNameList.count()==0)
+    {
+        throw "There is no files";
+    }
     if (currentIndex>0)
     {
         currentIndex--;
