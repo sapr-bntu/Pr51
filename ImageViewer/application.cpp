@@ -2,25 +2,33 @@
 
 Application::Application()
 {
-    //fileService=new FileService();
+    fileService=NULL;
+    folderService=NULL;
 }
 
-fileInfo Application::GetFileInfo()
+FileService* Application::GetFileService()
 {
-    return fileService.GetFileInfo(currentFile);
+    return fileService;
 }
 
-QString Application::MoveNext()
+FolderService* Application::GetFolderService()
 {
-    return folderService->GetNextFile();
+    return folderService;
 }
-QString Application::MovePrevious()
+
+void Application::MoveNext()
 {
-    return folderService->GetPreviousFile();
+    fileService=new FileService(folderService->GetNextFile());
+
+}
+void Application::MovePrev()
+{
+    fileService=new FileService(folderService->GetPreviousFile());
 }
 
 void Application::OpenFile(QString filePath)
 {
-    currentFile=filePath;
+    //currentFile=filePath;
+    fileService=new FileService(filePath);
     folderService = new FolderService(filePath);
 }

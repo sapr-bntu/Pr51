@@ -7,11 +7,12 @@
 #include <ifileinforepository.h>
 
 class FileService {
-
+private:
+    QString m_Path;
 public:
-    FileService();   
-    fileInfo GetFileInfo(QString path);
-    QImage GetImage(QString path);
+    FileService(QString path);
+    fileInfo GetFileInfo();
+    QImage GetImage();
     void SaveFileInfo(fileInfo fileInfoToSave);
 };
 
