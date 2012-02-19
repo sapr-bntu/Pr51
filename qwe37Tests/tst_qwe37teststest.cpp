@@ -3,6 +3,9 @@
 #include <QtCore/QCoreApplication>
 #include <fileinfo.h>
 #include <folderservice.h>
+#include <application.h>
+
+
 class Qwe37TestsTest : public QObject
 {
     Q_OBJECT
@@ -16,6 +19,9 @@ private Q_SLOTS:
     void fileInfoSetCommentTest();
     void SetCommentExceptionTest();
     void FolderServiceConstructorTets();
+    void ApplicationOpenFileTest();
+    void ApplicationConstructor1();
+    void ApplicationConstructor2();
 };
 
 Qwe37TestsTest::Qwe37TestsTest()
@@ -25,7 +31,31 @@ Qwe37TestsTest::Qwe37TestsTest()
 void Qwe37TestsTest::FolderServiceConstructorTets()
 {
     FolderService* fs=new FolderService("qwse");
-    QCOMPARE(true,false);
+    QCOMPARE(fs->CurrentFileIndex(),-1);
+}
+
+void Qwe37TestsTest::ApplicationOpenFileTest()
+{
+    Application* app=new Application();
+    app->OpenFile("qwe");
+}
+
+void Qwe37TestsTest::ApplicationConstructor1()
+{
+    Application* app=new Application();
+    FileService* fs= app->GetFileService();
+    if (fs!=NULL)
+        QCOMPARE(true,false);
+
+}
+
+void Qwe37TestsTest::ApplicationConstructor2()
+{
+    Application* app=new Application();
+    FolderService* fs=app->GetFolderService();
+    if (fs!=NULL)
+        QCOMPARE(true,false);
+
 }
 
 void Qwe37TestsTest::SetCommentExceptionTest()
