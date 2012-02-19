@@ -2,6 +2,7 @@
 #include <QtTest/QtTest>
 #include <QtCore/QCoreApplication>
 #include <fileinfo.h>
+#include <folderservice.h>
 class Qwe37TestsTest : public QObject
 {
     Q_OBJECT
@@ -10,22 +11,36 @@ public:
     Qwe37TestsTest();
     
 private Q_SLOTS:
-    void initTestCase();
-    void cleanupTestCase();
+
     void fileInfoConstructorTest();
     void fileInfoSetCommentTest();
+    void SetCommentExceptionTest();
+    void FolderServiceConstructorTets();
 };
 
 Qwe37TestsTest::Qwe37TestsTest()
 {
 }
 
-void Qwe37TestsTest::initTestCase()
+void Qwe37TestsTest::FolderServiceConstructorTets()
 {
+    FolderService* fs=new FolderService("qwse");
+    QCOMPARE(true,false);
 }
 
-void Qwe37TestsTest::cleanupTestCase()
+void Qwe37TestsTest::SetCommentExceptionTest()
 {
+    fileInfo *fi = new fileInfo("qwe");
+    bool ok=true;
+    try
+    {
+        fi->SetComment("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+    }
+    catch(char* str)
+    {
+        ok=false;
+    }
+    QCOMPARE(ok,false);
 }
 
 void Qwe37TestsTest::fileInfoConstructorTest()

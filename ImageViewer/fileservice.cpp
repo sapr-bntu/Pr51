@@ -13,7 +13,6 @@ fileInfo FileService::GetFileInfo()
 }
 void FileService::SaveFileInfo(fileInfo fileInfoToSave)
 {
-
     IFileInfoRepository *repository = IFieInfoRepositoryFactory::GetRepository();
     repository->SaveFileInfo(fileInfoToSave);
 }
