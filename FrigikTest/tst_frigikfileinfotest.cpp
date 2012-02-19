@@ -38,7 +38,7 @@ void FrigikFileInfoTest::GetMarkTest()
     QCOMPARE(file->GetMark(),4);
 }
 void FrigikFileInfoTest::GetWrongMarkTest()
-{
+{//
     fileInfo *file = new fileInfo("test");
     file->SetMark(4);
     bool success;
