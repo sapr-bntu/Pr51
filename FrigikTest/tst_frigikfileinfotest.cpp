@@ -3,6 +3,8 @@
 #include <QtCore/QCoreApplication>
 #include <fileinfo.h>
 #include <QDebug>
+#include <fileservice.h>
+#include <QImage>
 
 class FrigikFileInfoTest : public QObject
 {
@@ -17,6 +19,7 @@ private Q_SLOTS:
     void GetMarkTest();
     void GetWrongMarkTest();
     void GetException();
+    void FileServiceGetImage_Exception();
 };
 
 FrigikFileInfoTest::FrigikFileInfoTest()
@@ -68,7 +71,21 @@ void FrigikFileInfoTest::GetException()
     }
     QCOMPARE(isException,true);
 }
-
+void FrigikFileInfoTest::FileServiceGetImage_Exception()
+{
+    FileService *service = new FileService(QString("test"));
+    bool success;
+    try
+    {
+       QImage img = service->GetImage();
+        success=false;
+    }
+    catch(char*)
+    {
+        success=true;
+    }
+    QCOMPARE(success,true);
+}
 QTEST_MAIN(FrigikFileInfoTest)
 
 #include "tst_frigikfileinfotest.moc"

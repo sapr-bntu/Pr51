@@ -6,7 +6,7 @@
 
 QT       += testlib
 
-QT       -= gui
+QT       += gui
 
 TARGET = tst_frigikfileinfotest
 CONFIG   += console
