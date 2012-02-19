@@ -1,17 +1,17 @@
 #ifndef SQLFILEINFOREPOSITORY_H
 #define SQLFILEINFOREPOSITORY_H
 
-#include <../model/fileinfo.h>
-#include <../interfaces/ifileinforepository.h>
+#include <fileinfo.h>
+#include <ifileinforepository.h>
 
 class SQLFileInfoRepository:public IFileInfoRepository
 {
 public:
     SQLFileInfoRepository();
 
-    fileInfo GetFileInfo(QString path);
-    bool HasFileInfo(QString path);
-    void SaveFileInfo(fileInfo fileInfo);
+    virtual fileInfo GetFileInfo(QString path);
+    virtual bool HasFileInfo(QString path);
+    virtual void SaveFileInfo(fileInfo fileInfo);
 };
 
 #endif // SQLFILEINFOREPOSITORY_H

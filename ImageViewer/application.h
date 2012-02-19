@@ -1,9 +1,9 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 #include <QString>
-#include <../model/fileinfo.h>
-#include <../Services/folderservice.h>
-#include <../Services/fileservice.h>
+#include <fileinfo.h>
+#include <folderservice.h>
+#include <fileservice.h>
 #include <QFileInfo>
 #include <QDir>
 

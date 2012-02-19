@@ -5,7 +5,7 @@ IFieInfoRepositoryFactory::IFieInfoRepositoryFactory()
 {
 }
 
-IFileInfoRepository IFieInfoRepositoryFactory::GetRepository()
+IFileInfoRepository* IFieInfoRepositoryFactory::GetRepository()
 {
-throw;
+    return new SQLFileInfoRepository();
 }

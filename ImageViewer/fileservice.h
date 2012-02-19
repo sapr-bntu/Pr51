@@ -1,14 +1,18 @@
 #ifndef FILESERVICE_H
 #define FILESERVICE_H
-#include <../model/fileinfo.h>
+#include <fileinfo.h>
 #include <QImage>
 
+#include <ifieinforepositoryfactory.h>
+#include <ifileinforepository.h>
+
 class FileService {
+
 public:
     FileService();   
     fileInfo GetFileInfo(QString path);
     QImage GetImage(QString path);
-    void SaveFileInfo(fileInfo file);
+    void SaveFileInfo(fileInfo fileInfoToSave);
 };
 
 #endif // FILESERVICE_H

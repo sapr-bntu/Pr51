@@ -1,9 +1,11 @@
 #include "folderservice.h"
-#include <../model/fileinfo.h>
 
+
+#include <QDebug>
 
 FolderService::FolderService(QString path)
 {
+
     QFileInfo *fi=new QFileInfo(path);
     QDir *pdr=new QDir(fi->absoluteDir());
     folderPath = pdr->dirName();
@@ -11,11 +13,13 @@ FolderService::FolderService(QString path)
     QStringList namefilter;
     namefilter.append("*.png");
     namefilter.append("*.jpg");
-
     fileNameList=pdr->entryList(namefilter);
+
     for (int i=0;i<fileNameList.count();i++)
        {
+
           fileNameList[i]=pdr->absoluteFilePath(fileNameList[i]);
+
        }
     currentIndex=fileNameList.indexOf(path);
 }

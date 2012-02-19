@@ -1,6 +1,6 @@
 #ifndef FOLDERSERVICE_H
 #define FOLDERSERVICE_H
-#include <../model/fileinfo.h>
+#include <fileinfo.h>
 #include <QString>
 #include <QStringList>
 #include <QDir>

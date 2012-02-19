@@ -1,7 +1,7 @@
 #ifndef IFILEINFOREPOSITORY_H
 #define IFILEINFOREPOSITORY_H
 
-#include <../model/fileinfo.h>
+#include <fileinfo.h>
 class IFileInfoRepository
 {
 public:

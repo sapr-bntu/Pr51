@@ -1,12 +1,13 @@
 #ifndef IFIEINFOREPOSITORYFACTORY_H
 #define IFIEINFOREPOSITORYFACTORY_H
 
-#include <../interfaces/ifileinforepository.h>
+#include <ifileinforepository.h>
+#include <sqlfileinforepository.h>
 
 class IFieInfoRepositoryFactory {
 public:
     IFieInfoRepositoryFactory();
-    static  IFileInfoRepository GetRepository();
+    static  IFileInfoRepository* GetRepository();
 };
 
 #endif // IFIEINFOREPOSITORYFACTORY_H
