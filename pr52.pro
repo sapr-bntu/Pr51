@@ -3,4 +3,6 @@ TEMPLATE = subdirs
 SUBDIRS += \
     ImageViewer \
     ImageViewerUI \
-    qwe37Tests
+    qwe37Tests \
+    FrigikTest 
+
