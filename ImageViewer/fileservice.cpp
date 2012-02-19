@@ -2,13 +2,14 @@
 
 
 
-FileService::FileService()
+FileService::FileService(QString path)
 {
+    m_Path=path;
 }
-fileInfo FileService::GetFileInfo(QString path)
+fileInfo FileService::GetFileInfo()
 {
     IFileInfoRepository *repository = IFieInfoRepositoryFactory::GetRepository();
-    return repository->GetFileInfo(path);
+    return repository->GetFileInfo(m_Path);
 }
 void FileService::SaveFileInfo(fileInfo fileInfoToSave)
 {
@@ -16,9 +17,9 @@ void FileService::SaveFileInfo(fileInfo fileInfoToSave)
     IFileInfoRepository *repository = IFieInfoRepositoryFactory::GetRepository();
     repository->SaveFileInfo(fileInfoToSave);
 }
-QImage FileService::GetImage(QString path)
+QImage FileService::GetImage()
 {
-    QImage image(path);
+    QImage image(m_Path);
     if (image.isNull()) {
         throw "ArgumentException";
     }

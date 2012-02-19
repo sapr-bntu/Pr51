@@ -6,7 +6,7 @@
 #include <fileservice.h>
 #include <QFileInfo>
 #include <QDir>
-
+/////
 class Application
 {
 
@@ -14,16 +14,16 @@ public:
     Application();
 
 private:
-    QString currentFile;
+    //QString currentFile;
     FolderService *folderService;
-    FileService fileService;
+    FileService* fileService;
 
 public:
-    QString MoveNext();
-    QString MovePrevious();
-    fileInfo GetFileInfo();
     void OpenFile(QString filePath);
-
+    FolderService* GetFolderService();
+    FileService* GetFileService();
+    void MoveNext();
+    void MovePrev();
 };
 
 #endif // APPLICATION_H

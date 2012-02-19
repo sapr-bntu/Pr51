@@ -32,4 +32,5 @@ void fileInfo::SetComment(QString comment)
 {
     if (comment.length()>50)
         throw "argException";
+    m_comment=comment;
 }
