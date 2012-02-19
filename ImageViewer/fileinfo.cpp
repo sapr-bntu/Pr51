@@ -25,6 +25,7 @@ void fileInfo::SetMark(int mark)
 {
     if (mark>5) throw "argException";
     if (mark<0) throw "argException";
+    m_mark=mark;
 }
 
 void fileInfo::SetComment(QString comment)

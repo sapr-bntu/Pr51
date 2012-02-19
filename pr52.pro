@@ -2,4 +2,5 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     ImageViewer \
-    ImageViewerUI
+    ImageViewerUI \
+    FrigikTest
