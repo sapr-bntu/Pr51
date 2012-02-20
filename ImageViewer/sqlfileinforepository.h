@@ -3,15 +3,18 @@
 
 #include <fileinfo.h>
 #include <ifileinforepository.h>
+#include <QtSql>
 
 class SQLFileInfoRepository:public IFileInfoRepository
 {
+private:
+    QSqlDatabase m_db;
 public:
     SQLFileInfoRepository();
 
     virtual fileInfo GetFileInfo(QString path);
     virtual bool HasFileInfo(QString path);
-    virtual void SaveFileInfo(fileInfo fileInfo);
+    virtual void SaveFileInfo(fileInfo fInfo);
 };
 
 #endif // SQLFILEINFOREPOSITORY_H
