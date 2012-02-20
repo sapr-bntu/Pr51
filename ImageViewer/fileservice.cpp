@@ -24,3 +24,7 @@ QImage FileService::GetImage()
     }
     return image;
 }
+QString FileService::GetCurrentPath()
+{
+    return m_Path;
+}

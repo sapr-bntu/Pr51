@@ -5,14 +5,16 @@
 #include <QDebug>
 #include <fileservice.h>
 #include <QImage>
+#include <folderservice.h>
+#include <application.h>
 
 class FrigikFileInfoTest : public QObject
 {
     Q_OBJECT
-    
+
 public:
     FrigikFileInfoTest();
-    
+
 private Q_SLOTS:
     void initTestCase();
     void cleanupTestCase();
@@ -20,6 +22,12 @@ private Q_SLOTS:
     void GetWrongMarkTest();
     void GetException();
     void FileServiceGetImage_Exception();
+    void FolderServiceGetPrevious();
+    void FolderServiceGetNext();
+    void FolderServiceGetPrevious_Exception();
+    void FolderServiceGetNext_Exception();
+    void ApplicationMoveNext();
+    void ApplicationMovePrev();
 };
 
 FrigikFileInfoTest::FrigikFileInfoTest()
@@ -62,12 +70,12 @@ void FrigikFileInfoTest::GetException()
     bool isException;
     try{
 
-    file->SetMark(6);
+        file->SetMark(6) ;
     isException=false;
     }
     catch(char* a)
     {
-        isException=true;        
+        isException=true;
     }
     QCOMPARE(isException,true);
 }
@@ -80,12 +88,81 @@ void FrigikFileInfoTest::FileServiceGetImage_Exception()
        QImage img = service->GetImage();
         success=false;
     }
-    catch(char*)
+    catch(char* a)
     {
         success=true;
     }
     QCOMPARE(success,true);
 }
+
+void FrigikFileInfoTest::FolderServiceGetNext()
+{
+    qDebug()<<"You have to create a folder D:/temp/ and three pictures in there a b c";
+    FolderService *fs=new FolderService("D:/temp/a.jpg");
+    QString next;
+    next=fs->GetNextFile();
+    QCOMPARE(next,QString("D:/temp/b.jpg"));
+}
+void FrigikFileInfoTest::FolderServiceGetPrevious()
+{
+    qDebug()<<"You have to create a folder D:/temp/ and three pictures in there a b c";
+    FolderService *fs=new FolderService("D:/temp/a.jpg");
+    QString next;
+    next=fs->GetPreviousFile();
+    QCOMPARE(next,QString("D:/temp/c.jpg"));
+}
+void FrigikFileInfoTest::FolderServiceGetPrevious_Exception()
+{
+    FolderService *fs=new FolderService("empty path");
+    bool success;
+    try
+    {
+        fs->GetPreviousFile();
+        success=false;
+    }
+    catch(char* a)
+    {
+        success=true;
+    }
+    QCOMPARE(success,true);
+}
+void FrigikFileInfoTest::FolderServiceGetNext_Exception()
+{
+    FolderService *fs=new FolderService("empty path");
+    bool success;
+    try
+    {
+        fs->GetNextFile();
+        success=false;
+    }
+    catch(char* a)
+    {
+        success=true;
+    }
+    QCOMPARE(success,true);
+}
+void FrigikFileInfoTest::ApplicationMoveNext()
+{
+    qDebug()<<"You have to create a folder D:/temp/ and three pictures in there a b c";
+    Application *app = new Application();
+    app->OpenFile(QString("D:/temp/a.jpg"));
+    app->MoveNext();
+    QString str = app->GetFileService()->GetCurrentPath();
+    QCOMPARE(str,QString("D:/temp/b.jpg"));
+}
+void FrigikFileInfoTest::ApplicationMovePrev()
+{
+    qDebug()<<"You have to create a folder D:/temp/ and three pictures in there a b c";
+    Application *app = new Application();
+    app->OpenFile(QString("D:/temp/a.jpg"));
+    app->MovePrev();
+    QString str = app->GetFileService()->GetCurrentPath();
+    QCOMPARE(str,QString("D:/temp/c.jpg"));
+}
+
+
+
 QTEST_MAIN(FrigikFileInfoTest)
 
 #include "tst_frigikfileinfotest.moc"
+
