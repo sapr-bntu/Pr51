@@ -4,6 +4,7 @@
 #include <fileinfo.h>
 #include <folderservice.h>
 #include <application.h>
+#include <ifieinforepositoryfactory.h>
 
 
 class Qwe37TestsTest : public QObject
@@ -22,10 +23,33 @@ private Q_SLOTS:
     void ApplicationOpenFileTest();
     void ApplicationConstructor1();
     void ApplicationConstructor2();
+    void FileFilter();
+    void FileFilterCount();
+    void FactoryTest();
 };
 
 Qwe37TestsTest::Qwe37TestsTest()
 {
+}
+
+void Qwe37TestsTest::FactoryTest()
+{
+    if (IFieInfoRepositoryFactory::GetRepository()==NULL)
+        QCOMPARE(true,false);
+
+}
+
+void Qwe37TestsTest::FileFilterCount()
+{
+    FolderService fs=FolderService("qew");
+    QCOMPARE(fs.GetNameFilter().count(),2);
+}
+
+void Qwe37TestsTest::FileFilter()
+{
+    FolderService fs=FolderService("qew");
+    QString f= fs.GetNameFilter().at(0);
+    QCOMPARE(f,QString("*.png"));
 }
 
 void Qwe37TestsTest::FolderServiceConstructorTets()

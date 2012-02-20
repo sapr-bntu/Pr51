@@ -9,6 +9,7 @@
 class FileService {
 private:
     QString m_Path;
+
 public:
     FileService(QString path);
     fileInfo GetFileInfo();

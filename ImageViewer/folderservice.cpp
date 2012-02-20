@@ -10,10 +10,10 @@ FolderService::FolderService(QString path)
     QDir *pdr=new QDir(fi->absoluteDir());
     folderPath = pdr->dirName();
 
-    QStringList namefilter;
-    namefilter.append("*.png");
-    namefilter.append("*.jpg");
-    fileNameList=pdr->entryList(namefilter);
+    m_NameFilter.append("*.png");
+    m_NameFilter.append("*.jpg");
+
+    fileNameList=pdr->entryList(m_NameFilter);
 
     for (int i=0;i<fileNameList.count();i++)
        {
@@ -21,6 +21,12 @@ FolderService::FolderService(QString path)
        }   
     currentIndex=fileNameList.indexOf(path);
 }
+
+QStringList FolderService::GetNameFilter()
+{
+    return m_NameFilter;
+}
+
 QString FolderService::GetNextFile()
 {    
 
