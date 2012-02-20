@@ -30,6 +30,8 @@ private:
     int sh;
     int sw;
     void showImg();
+    virtual bool notify(QObject *o, QEvent *e);
+
 
 private slots:
 
@@ -43,6 +45,7 @@ private slots:
     void normalSize();
     void next();
     void prev();
+    void savetag();
     //void updateData();
 
 };

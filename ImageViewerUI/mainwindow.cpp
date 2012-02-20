@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
     connect(ui->pushButton_4, SIGNAL(clicked()), this, SLOT(next()));
     connect(ui->pushButton_3, SIGNAL(clicked()), this, SLOT(prev()));
+    connect(ui->commandLinkButton, SIGNAL(clicked()), this, SLOT(savetag()));
 
     ui->actionFitToWindow->setEnabled(false);
     ui->actionFitToWindow->setCheckable(true);
@@ -52,6 +53,25 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::savetag()
+{
+    if (app.GetFileService()!=NULL)
+    {
+      fileInfo fi=fileInfo( app.GetFileService()->GetCurrentPath());
+      fi.SetMark(ui->spinBox->value());
+      fi.SetComment(ui->lineEdit->text());
+      app.GetFileService()->SaveFileInfo(fi);
+    }
+}
+
+
+bool MainWindow::notify(QObject *o, QEvent *e)
+{
+    QMessageBox::information(0,tr("Error"),tr("Press OK to continue."));
+
+    return true;
 }
 
 void MainWindow::showImg()
