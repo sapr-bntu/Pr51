@@ -29,6 +29,7 @@ private:
     int ci;
     int sh;
     int sw;
+    void showImg();
 
 private slots:
 

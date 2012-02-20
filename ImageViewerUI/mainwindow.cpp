@@ -54,20 +54,46 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::showImg()
+{
+    QImage image=app.GetFileService()->GetImage();
+    ui->label->setPixmap(QPixmap::fromImage(image));
+    scaleFactor = 1.0;
+    sh=image.height();
+    sw=image.width();
+
+    ui->actionFitToWindow->setEnabled(true);
+    updateActions();
+
+     if (!ui->actionFitToWindow->isChecked())
+         ui->label->adjustSize();
+     fitToWindow();
+}
+
 void MainWindow::next()
 {
-
+    app.MoveNext();
+    showImg();
 }
 
 void MainWindow::prev()
 {
-
+    app.MovePrev();
+    showImg();
 }
 
 
 
 void MainWindow::openfile()
 {
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                             tr("Open File"), QDir::currentPath());
+   if (!fileName.isEmpty()) {
+        app.OpenFile(fileName);
+   }
+
+    showImg();
+
 
 }
 

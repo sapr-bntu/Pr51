@@ -25,7 +25,7 @@ FolderService::FolderService(QString path)
 }
 QString FolderService::GetNextFile()
 {    
-    if (currentIndex<fileNameList.count())
+    if (currentIndex<fileNameList.count()-1)
     {
         currentIndex++;
         return fileNameList[currentIndex];
