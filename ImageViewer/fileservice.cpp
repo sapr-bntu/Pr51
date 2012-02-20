@@ -1,5 +1,5 @@
 #include "fileservice.h"
-
+#include "QDebug.h"
 
 
 FileService::FileService(QString path)
@@ -8,6 +8,7 @@ FileService::FileService(QString path)
 }
 fileInfo FileService::GetFileInfo()
 {
+    qDebug()<<"FileService::GetFileInfo";
     IFileInfoRepository *repository = IFieInfoRepositoryFactory::GetRepository();
     return repository->GetFileInfo(m_Path);
 }
@@ -27,4 +28,10 @@ QImage FileService::GetImage()
 QString FileService::GetCurrentPath()
 {
     return m_Path;
+}
+
+bool FileService::HasInfo()
+{
+    IFileInfoRepository *repository = IFieInfoRepositoryFactory::GetRepository();
+    return repository->HasFileInfo(m_Path);
 }

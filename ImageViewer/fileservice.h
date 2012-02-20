@@ -16,6 +16,7 @@ public:
     QImage GetImage();
     void SaveFileInfo(fileInfo fileInfoToSave);
     QString GetCurrentPath();
+    bool HasInfo();
 };
 
 #endif // FILESERVICE_H

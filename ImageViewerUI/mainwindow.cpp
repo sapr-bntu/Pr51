@@ -88,6 +88,20 @@ void MainWindow::showImg()
      if (!ui->actionFitToWindow->isChecked())
          ui->label->adjustSize();
      fitToWindow();
+
+     if (app.GetFileService()->HasInfo())
+     {
+         qDebug()<<"Has tag for "<<app.GetFileService()->GetCurrentPath();
+         fileInfo fi=app.GetFileService()->GetFileInfo();
+         ui->spinBox->setValue(fi.GetMark());
+         ui->lineEdit->setText(fi.GetComment());
+     }
+     else
+     {
+         qDebug()<<"No tag for "<<app.GetFileService()->GetCurrentPath();
+         ui->spinBox->setValue(0);
+         ui->lineEdit->setText("");
+     }
 }
 
 void MainWindow::next()
