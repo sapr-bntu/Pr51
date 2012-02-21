@@ -4,11 +4,16 @@
 #include <fileinfo.h>
 #include <ifileinforepository.h>
 #include <QtSql>
+#include <QMessageBox>
+#include <QSqlDatabase>
+#include <QSqlError>
+#include <QSqlQuery>
+
 
 class SQLFileInfoRepository:public IFileInfoRepository
 {
 private:
-    QSqlDatabase m_db;
+    QSqlDatabase m_db;    
 public:
     SQLFileInfoRepository();
 
