@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core sql gui
 
 TARGET = ImageViewerUI
 TEMPLATE = app

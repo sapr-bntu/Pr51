@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += testlib
+QT       += testlib sql gui
 
-QT       += gui
+
 
 TARGET = tst_frigikfileinfotest
 CONFIG   += console

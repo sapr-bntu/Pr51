@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += testlib
+QT       += testlib sql
 
 TARGET = tst_qwe37teststest
 CONFIG   += console
