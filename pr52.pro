@@ -4,5 +4,6 @@ SUBDIRS += \
     ImageViewer \
     ImageViewerUI \
     qwe37Tests \
-    FrigikTest 
+    FrigikTest \ 
+    Mord-SythTests
 
