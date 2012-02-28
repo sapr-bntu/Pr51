@@ -52,7 +52,7 @@ bool SQLFileInfoRepository::HasFileInfo(QString path)
     query.exec();
     query.first();
     m_db.close();
-    if (query.value(0)== NULL && query.value(1)==NULL)
+    if (query.value(0)== 0 && query.value(1).isNull())
         return false;
     else return true;
 }
