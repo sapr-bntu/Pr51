@@ -35,7 +35,7 @@ fileInfo SQLFileInfoRepository::GetFileInfo(QString path)
     QSqlQuery query;
     query.prepare("SELECT mark, comment FROM Marks WHERE path = :path");
     query.bindValue(":path", path);
-    query.exec();    
+    query.exec();
     query.first();
     fInfo.SetMark(query.value(0).toInt());
     fInfo.SetComment(query.value(1).toString());
@@ -52,7 +52,7 @@ bool SQLFileInfoRepository::HasFileInfo(QString path)
     query.exec();
     query.first();
     m_db.close();
-    if (query.value(0)== 0 && query.value(1).isNull())
+    if (query.value(0).toInt()== 0 && query.value(1).toString() == "" )
         return false;
     else return true;
 }
