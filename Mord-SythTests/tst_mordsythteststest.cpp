@@ -21,6 +21,10 @@ private Q_SLOTS:
     void HasFileInfoExceptionTest();
     void SaveFileInfoInsertTest();
     void SaveFileInfoUpdateTest();
+    void SetMarkTest();
+    void SetMarkExceptionTest();
+    void FolderServiceCurrentFile();
+    void CurrentFileIndex();
 };
 
 MordSythTestsTest::MordSythTestsTest()
@@ -82,6 +86,44 @@ void MordSythTestsTest::SaveFileInfoUpdateTest()
     repository->SaveFileInfo(fInfo);
     fInfo = repository->GetFileInfo("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
     QCOMPARE(fInfo.GetMark(),3);
+}
+
+void MordSythTestsTest::SetMarkTest()
+{
+    fileInfo *fi = new fileInfo("new file");
+    fi->SetMark(4);
+    QCOMPARE(fi->GetMark(),4);
+}
+
+void MordSythTestsTest::SetMarkExceptionTest()
+{
+    fileInfo *fi = new fileInfo("new file");
+    bool exc = false;
+    try
+    {
+        fi->SetMark(-1);
+    }
+    catch (char* str)
+    {
+        exc = true;
+    }
+    QCOMPARE(exc,true);
+}
+
+void MordSythTestsTest::FolderServiceCurrentFile()
+{
+    FolderService *fs=new FolderService("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+    QString current;
+    current = fs->CurrentFile();
+    QCOMPARE(current,QString("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg"));
+}
+
+void MordSythTestsTest::CurrentFileIndex()
+{
+    FolderService *fs=new FolderService("C:/Users/Public/Pictures/Sample Pictures/Chrysanthemum.jpg");
+    int current;
+    current = fs->CurrentFileIndex();
+    QCOMPARE(current,0);
 }
 
 QTEST_APPLESS_MAIN(MordSythTestsTest)
