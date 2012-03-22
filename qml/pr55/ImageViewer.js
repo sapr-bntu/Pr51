@@ -29,3 +29,7 @@ function nextFile()
     imgapp.MovePrev();
     updateImage();
 }
+function saveMark()
+{
+    imgapp.SaveFileInfo(imgapp.GetCurrentPath(),markText.text,commentText.text);
+}

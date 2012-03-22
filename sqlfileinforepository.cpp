@@ -66,6 +66,10 @@ void SQLFileInfoRepository::SaveFileInfo(fileInfo fInfo)
     query.exec();
     if (!query.first())
     {
+        qDebug()<<"insert";
+        qDebug()<<fInfo.GetPath();
+        qDebug()<<fInfo.GetComment();
+        qDebug()<<fInfo.GetMark();
         query.prepare("INSERT INTO Marks values(:tag, :mark, :path)");
         query.bindValue(":mark", fInfo.GetMark());
         query.bindValue(":tag", fInfo.GetComment());
@@ -73,6 +77,10 @@ void SQLFileInfoRepository::SaveFileInfo(fileInfo fInfo)
         query.exec();
     }
 else{
+         qDebug()<<"update";
+         qDebug()<<fInfo.GetPath();
+         qDebug()<<fInfo.GetComment();
+         qDebug()<<fInfo.GetMark();
     query.prepare("UPDATE Marks SET mark=:mark,comment=:tag WHERE path = :path");
     query.bindValue(":mark", fInfo.GetMark());
     query.bindValue(":tag", fInfo.GetComment());
@@ -80,4 +88,5 @@ else{
     query.exec();
     }
     m_db.close();
+    qDebug()<<"End";
 }

@@ -20,7 +20,6 @@ Rectangle {
         anchors.topMargin: 0
         anchors.fill: parent
         fillMode: Image.PreserveAspectFit
-
     }
 
     Rectangle {
@@ -145,8 +144,102 @@ Rectangle {
     }
 
     Rectangle {
-        id: exitButtonRectangle
+        id: saveButtonRectangle
         x: 306
+        y: 0
+        width: 88
+        height: 34
+        color: "#2093a4"
+        clip: true
+        opacity: 0.200
+
+        Text {
+            id: saveButtonText
+            x: 29
+            y: 6
+            text: qsTr("Save")
+            font.pointSize: 14
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+
+        }
+        MouseArea {
+            id: saveButton
+            x: 0
+            y: 0
+            width: 88
+            height: 34
+            visible: true
+            hoverEnabled: true
+            smooth: true
+            anchors.leftMargin: 0
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 0
+            anchors.topMargin: 0
+            anchors.fill: parent
+            onEntered: {parent.opacity=1}
+            onExited: {parent.opacity=0.5}
+            onClicked: JSFunc.saveMark()
+        }
+    }
+
+    Rectangle {
+        id: markTextRectangle
+        x: 406
+        y: 0
+        width: 40
+        height: 34
+        color: "#2022a4"
+        clip: true
+        opacity: 0.200
+
+        TextEdit {
+            id: markText
+            x: 276
+            y: 227
+            width: 80
+            height: 20
+            font.pixelSize: 24
+            anchors.leftMargin: 0
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 0
+            anchors.topMargin: 0
+            anchors.fill: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+
+    Rectangle {
+        id: commentTextRectangle
+        x: 456
+        y: 0
+        width: 88
+        height: 34
+        color: "#2022a4"
+        clip: true
+        opacity: 0.200
+
+        TextEdit {
+            id: commentText
+            x: 276
+            y: 227
+            width: 80
+            height: 20
+            font.pixelSize: 24
+            anchors.leftMargin: 0
+            anchors.rightMargin: 0
+            anchors.bottomMargin: 0
+            anchors.topMargin: 0
+            anchors.fill: parent
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+        }
+    }
+
+    Rectangle {
+        id: exitButtonRectangle
+        x: 656
         y: 0
         width: 88
         height: 34
@@ -183,5 +276,4 @@ Rectangle {
             onClicked: {Qt.quit()}
         }
     }
-
 }
