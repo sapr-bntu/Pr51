@@ -84,7 +84,7 @@ int Application::GetMark()
 {
   fileInfo fi = fileService->GetFileInfo();
   return fi.GetMark();
-}
+}//
 QString Application::GetComment()
 {
     fileInfo fi = fileService->GetFileInfo();
