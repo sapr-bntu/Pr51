@@ -29,6 +29,11 @@ public:
     Q_INVOKABLE bool RunOpenFile();
     Q_INVOKABLE int ImageW();
     Q_INVOKABLE int ImageH();
+    Q_INVOKABLE QString GetCurrentPath();
+    Q_INVOKABLE void SaveFileInfo(QString path, int mark, QString comment);
+    Q_INVOKABLE int GetMark();
+    Q_INVOKABLE QString GetComment();
+
 };
 
 #endif // APPLICATION_H

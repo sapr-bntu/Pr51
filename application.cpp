@@ -69,3 +69,24 @@ int Application::ImageH()
 {
     return this->fileService->GetImage().height();
 }
+QString Application::GetCurrentPath()
+{
+return fileService->GetCurrentPath();
+}
+void Application::SaveFileInfo(QString path, int mark, QString comment)
+{
+    fileInfo fi = fileInfo(path);
+    fi.SetComment(comment);
+    fi.SetMark(mark);
+    fileService->SaveFileInfo(fi);
+}
+int Application::GetMark()
+{
+  fileInfo fi = fileService->GetFileInfo();
+  return fi.GetMark();
+}
+QString Application::GetComment()
+{
+    fileInfo fi = fileService->GetFileInfo();
+    return fi.GetComment();
+}
