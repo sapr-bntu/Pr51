@@ -80,10 +80,14 @@ void Application::SaveFileInfo(QString path, int mark, QString comment)
     fi.SetMark(mark);
     fileService->SaveFileInfo(fi);
 }
-int Application::GetMark()
+QString Application::GetMark()
 {
   fileInfo fi = fileService->GetFileInfo();
-  return fi.GetMark();
+  int mark =fi.GetMark();
+  QString result ;
+  result.append(QString("%1").arg(mark));
+  qDebug()<< result;
+  return result;
 }
 QString Application::GetComment()
 {

@@ -214,7 +214,7 @@ Rectangle {
         id: commentTextRectangle
         x: 456
         y: 0
-        width: 88
+        width: 95
         height: 34
         color: "#2022a4"
         clip: true
@@ -224,7 +224,7 @@ Rectangle {
             id: commentText
             x: 276
             y: 227
-            width: 80
+            width: 90
             height: 20
             font.pixelSize: 24
             anchors.leftMargin: 0

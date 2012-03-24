@@ -16,6 +16,8 @@ function updateImage()
 {
     image1.source=imgapp.GetCurrentFile();
     image1.sourceSize.width=imgapp.ImageW();
+    markText.text = imgapp.GetMark();
+    commentText.text = imgapp.GetComment();
 }
 
 function prevFile()
