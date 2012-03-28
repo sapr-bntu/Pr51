@@ -54,3 +54,6 @@ HEADERS += \
     fileservice.h \
     fileinfo.h \
     application.h
+
+RESOURCES += \
+    images.qrc

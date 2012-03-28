@@ -63,25 +63,54 @@ Rectangle {
 
     }
 
-    Rectangle {
-        id: prevButtonRectangle
-        x: 102
-        y: 0
-        width: 88
-        height: 34
-        color: "#2093a4"
-        opacity: 0.200
-
-        Text {
-            id: prevButtonText
+    Image {
+            id: prevImage
+            source: "I:/QT_proj/prev.png"
             x: 10
-            y: 6
-            text: qsTr("Previous")
-            font.pointSize: 14
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
+            y: parent.height/2
+                    width: 88
+                    height: 88
+//                anchors.leftMargin: 0
+//                anchors.rightMargin: 0
+//                anchors.bottomMargin: 0
+//                anchors.topMargin: 0
+//                anchors.fill: parent
+            opacity: 0.02
+            scale: 1
+            visible:true
+//    Rectangle {
+//        id: prevButtonRectangle
+//        x: 10
+//        y: parent.height/2
+//        width: 88
+//        height: 34
+//        color: "#2093a4"
+//        opacity: 0.200
 
-        }
+//        Image {
+//                id: prevImage
+//                source: "I:/QT_proj/prev.png"
+//                x: 0
+//                y: 0
+//                anchors.leftMargin: 0
+//                anchors.rightMargin: 0
+//                anchors.bottomMargin: 0
+//                anchors.topMargin: 0
+//                anchors.fill: parent
+//                opacity: 0.02
+//                scale: 1
+//              }
+
+//        Text {
+//            id: prevButtonText
+//            x: 10
+//            y: 6
+//            text: qsTr("Previous")
+//            font.pointSize: 14
+//            verticalAlignment: Text.AlignVCenter
+//            horizontalAlignment: Text.AlignHCenter
+
+//        }
         MouseArea {
             id: prevButton
             x: 0
@@ -91,37 +120,55 @@ Rectangle {
             visible: true
             hoverEnabled: true
             smooth: true
-            anchors.leftMargin: 0
-            anchors.rightMargin: 0
-            anchors.bottomMargin: 0
-            anchors.topMargin: 0
-            anchors.fill: parent
+//            anchors.leftMargin: 0
+//            anchors.rightMargin: 0
+//            anchors.bottomMargin: 0
+//            anchors.topMargin: 0
+//            anchors.fill: parent
             onEntered: {parent.opacity=1}
-            onExited: {parent.opacity=0.5}
+            onExited: {parent.opacity=0.02}
             onClicked: JSFunc.prevFile()
             enabled: false
         }
     }
 
-    Rectangle {
-        id: nextButtonRectangle
-        x: 204
-        y: 0
-        width: 88
-        height: 34
-        color: "#2093a4"
-        opacity: 0.200
+//    Rectangle {
+//        id: nextButtonRectangle
+//        x: parent.width-100
+//        y: parent.height/2
+//        width: 88
+//        height: 34
+//        //color: "#ffffffff"
+//        opacity: 1
 
-        Text {
-            id: nextButtonText
-            x: 25
-            y: 6
-            text: qsTr("Next")
-            font.pointSize: 14
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
+//        Text {
+//            id: nextButtonText
+//            x: 25
+//            y: 6
+//            text: qsTr("Next")
+//            font.pointSize: 14
+//            verticalAlignment: Text.AlignVCenter
+//            horizontalAlignment: Text.AlignHCenter
 
-        }
+//        }
+        Image {
+                id: nextImage
+                source: "I:/QT_proj/next.png"
+                x: parent.width-100
+                        y: parent.height/2
+                        width: 88
+                        height: 88
+//                anchors.leftMargin: 0
+//                anchors.rightMargin: 0
+//                anchors.bottomMargin: 0
+//                anchors.topMargin: 0
+//                anchors.fill: parent
+                opacity: 0.02
+                scale: 1
+                visible:true
+
+
+
         MouseArea {
             id: nextButton
             x: 0
@@ -137,7 +184,7 @@ Rectangle {
             anchors.topMargin: 0
             anchors.fill: parent
             onEntered: {parent.opacity=1}
-            onExited: {parent.opacity=0.5}
+            onExited: {parent.opacity=0.02}
             onClicked: JSFunc.nextFile()
             enabled: false
         }
@@ -207,6 +254,8 @@ Rectangle {
             anchors.fill: parent
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
+
+            onTextChanged:  {JSFunc.saveMark()}
         }
     }
 
@@ -234,12 +283,13 @@ Rectangle {
             anchors.fill: parent
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
+            onTextChanged:  {JSFunc.saveMark()}
         }
     }
 
     Rectangle {
         id: exitButtonRectangle
-        x: 656
+        x: parent.width-100
         y: 0
         width: 88
         height: 34
