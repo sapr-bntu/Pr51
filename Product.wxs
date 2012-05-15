@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Product Id="e1f24303-45e6-4598-ae60-5d7b78e0c0cb" Name="ImageViewer" Language="1033" Version="1.0.0.0" Manufacturer="qwe" UpgradeCode="0784ff46-f8a6-49ac-ad97-48bb7eaa28d3">
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <Property Id="WIXUI_INSTALLDIR" Value="ProgramFilesFolder" />
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLLOCATION" Name="ImageViewer">
+          <Directory Id="sqldrivers" Name="sqldrivers">
+            <Component Id="ProductComponent1" Guid="243deb0f-9332-4be0-87a9-7ad47c31940f">
+              <File Id="plugin" Source="$(var.SolutionDir)\SetupProject\qsqlite4.dll"/>
+            </Component>
+          </Directory>
+          <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+          <Component Id="ProductComponent" Guid="847deb0f-9332-4be0-87a9-7ad47c31940f">
+            <File Id="ImageViewerUI" Source="$(var.SolutionDir)\SetupProject\ImageViewerUI.exe"/>
+            <File Id="QtCore" Source="$(var.SolutionDir)\SetupProject\QtCore4.dll"/>
+            <File Id="QtGui" Source="$(var.SolutionDir)\SetupProject\QtGui4.dll"/>
+            <File Id="QtSql" Source="$(var.SolutionDir)\SetupProject\QtSql4.dll"/>
+            <File Id="MSVCP100" Source="$(var.SolutionDir)\SetupProject\msvcp100.dll"/>
+            <File Id="MSVCR100" Source="$(var.SolutionDir)\SetupProject\msvcr100.dll"/>
+            <File Id="DB" Source="$(var.SolutionDir)\SetupProject\project_DB.db"/>
+
+            <Shortcut  Id="DesktopShortcut" Directory="DesktopFolder" Advertise="yes" Name="ImageViewer" Icon="ImageViewer.exe" WorkingDirectory="INSTALLLOCATION" >
+              <Icon Id="ImageViewer.exe" SourceFile="$(var.SolutionDir)\SetupProject\ImageViewer.ico" />
+            </Shortcut>
+          </Component>
+
+        </Directory>
+
+      </Directory>
+    </Directory>
+
+
+
+
+    <Feature Id="ProductFeature" Title="SetupProject" Level="1">
+      <!-- TODO: Remove the comments around this ComponentRef element and the Component above in order to add resources to this installer. -->
+      <ComponentRef Id="ProductComponent" />
+      <ComponentRef Id="ProductComponent1" />
+    </Feature>
+  </Product>
+</Wix>

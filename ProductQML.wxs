@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="dea484ca-747f-4839-824c-ff4fe1588553" Name="QmlViewer" Language="1033" Version="1.0.0.0" Manufacturer="QmlViewer" UpgradeCode="fa4b4fa6-b10c-4784-8d73-33300bf2e0db">
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <Property Id="WIXUI_INSTALLDIR" Value="ProgramFilesFolder" />
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+    
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="WindowsFolder" Name="Windows">
+        <Component Id="ProductComponent3" Guid="143deb0f-9532-4be0-88a9-7ad47c31940f">
+          <File Id="prev" Source="$(var.SolutionDir)\QmlViewer\prev.png"/>
+          <File Id="next" Source="$(var.SolutionDir)\QmlViewer\next.png"/>
+        </Component>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+      <Directory Id="ProgramFilesFolder">
+
+        <Directory Id="INSTALLLOCATION" Name="QmlViewer">
+          <Directory Id="sqldrivers" Name="sqldrivers">
+            <Component Id="ProductComponent" Guid="243deb0f-9332-4be0-87a9-7ad47c31940f">
+              <File Id="plugin" Source="$(var.SolutionDir)\QmlViewer\qsqlite4.dll"/>
+            </Component>
+          </Directory>
+          <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+          <Component Id="ProductComponent4" Guid="843deb0f-9332-4be0-87a9-7ad47c31940f">
+            <File Id="ImageViewerUI" Source="$(var.SolutionDir)\QmlViewer\QmlViewer.exe"/>
+            <File Id="QtCore" Source="$(var.SolutionDir)\QmlViewer\QtCore4.dll"/>
+            <File Id="QtGui" Source="$(var.SolutionDir)\QmlViewer\QtGui4.dll"/>
+            <File Id="QtSql" Source="$(var.SolutionDir)\QmlViewer\QtSql4.dll"/>
+            <File Id="QtDeclarative" Source="$(var.SolutionDir)\QmlViewer\QtDeclarative4.dll"/>
+            <File Id="QtNetwork" Source="$(var.SolutionDir)\QmlViewer\QtNetwork4.dll"/>
+            <File Id="QtScript" Source="$(var.SolutionDir)\QmlViewer\QtScript4.dll"/>
+            <File Id="QtXmlPatterns" Source="$(var.SolutionDir)\QmlViewer\QtXmlPatterns4.dll"/>
+            <File Id="MSVCP100" Source="$(var.SolutionDir)\QmlViewer\msvcp100.dll"/>
+            <File Id="MSVCR100" Source="$(var.SolutionDir)\QmlViewer\msvcr100.dll"/>
+            <File Id="DB" Source="$(var.SolutionDir)\QmlViewer\project_DB.db"/>
+
+            <Shortcut  Id="DesktopShortcut" Directory="DesktopFolder" Advertise="yes" Name="QmlImageViewer" Icon="QmlImageViewer.exe" WorkingDirectory="INSTALLLOCATION" >
+              <Icon Id="QmlImageViewer.exe" SourceFile="$(var.SolutionDir)\QmlViewer\ImageViewer.ico" />
+            </Shortcut>
+          </Component>
+
+          <Directory Id ="qml" Name="qml" SourceName="qml">
+            <Directory Id="pr55" Name="pr55" SourceName="pr55">
+              <Component Id="ProductComponent2" Guid="843deb0f-9332-4be0-87a9-7ad47c31941f">
+                <File Id="Script" Source="$(var.SolutionDir)\QmlViewer\qml\pr55\ImageViewer.js"/>
+                <File Id="Qml" Source="$(var.SolutionDir)\QmlViewer\qml\pr55\main.qml"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="ProductFeature" Title="QmlViewer" Level="1">
+
+      <!-- Note: The following ComponentGroupRef is required to pull in generated authoring from project references. -->
+      <ComponentRef Id="ProductComponent" />
+      <ComponentRef Id="ProductComponent2" />
+      <ComponentRef Id="ProductComponent3" />
+      <ComponentRef Id="ProductComponent4" />
+    </Feature>
+  </Product>
+</Wix>
